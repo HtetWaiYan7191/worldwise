@@ -10,14 +10,16 @@ export default function HomePage() {
           You travel the world. WorldWise keeps track of your adventures.
         </h1>
 
-        <p className="text-white/80 text-xl text-center leading-9">
+        <p className="text-xl leading-9 text-center text-white/80">
           A world map that tracks your footsteps into every city you can think
           of. Never forget your wonderful experiences, and show your friends how
           you have wandered the world.
         </p>
 
-        <div className="btn-container flex justify-center">
-          <Button link="app" text="Start Tracking Now" />
+        <div className="flex justify-center btn-container">
+          <Button link="app">
+            Start Tracking Now
+          </Button>
         </div>
       </section>
     </main>
