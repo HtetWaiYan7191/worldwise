@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "cityName": "Tokyo",
+      "country": "Japan",
+      "emoji": "🇯🇵",
+      "date": "2027-12-25T12:00:00.00Z",
+      "notes": "Visited Tokyo Tower!",
+      "position": {
+        "lat": 35.6586,
+        "lng": 139.7454
+      },
+      "id": 73930386
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2028-05-20T10:30:00.00Z",
+      "notes": "Enjoyed the Eiffel Tower view!",
+      "position": {
+        "lat": 48.8588,
+        "lng": 2.2945
+      },
+      "id": 73930387
+    },
+    {
+      "cityName": "New York City",
+      "country": "United States",
+      "emoji": "🇺🇸",
+      "date": "2028-07-04T09:00:00.00Z",
+      "notes": "Celebrated Independence Day!",
+      "position": {
+        "lat": 40.7128,
+        "lng": -74.0060
+      },
+      "id": 73930388
+    },
+    {
+      "cityName": "Sydney",
+      "country": "Australia",
+      "emoji": "🇦🇺",
+      "date": "2028-09-01T14:00:00.00Z",
+      "notes": "Visited the Sydney Opera House!",
+      "position": {
+        "lat": -33.8688,
+        "lng": 151.2093
+      },
+      "id": 73930389
+    },
+    {
+      "cityName": "Rome",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2028-03-15T11:00:00.00Z",
+      "notes": "Explored the Colosseum!",
+      "position": {
+        "lat": 41.9028,
+        "lng": 12.4964
+      },
+      "id": 73930390
+    }
+  ]
+}
