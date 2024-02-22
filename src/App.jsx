@@ -11,54 +11,64 @@ import CityList from "./components/CityList";
 import CityDetail from "./components/CityDetail";
 import CountryList from "./components/CountryList";
 import Form from "./components/Form";
-
+import { Navigate } from "react-router-dom";
+import { CitiesProvider } from "./contexts/CitiesContext";
 export default function App() {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const BASAEURL = 'http://localhost:9000';
-
-  useEffect(() => {
-    async function fetchCities() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`${BASAEURL}/data`);
-        const result = await response.json();
-        console.log(result);
-        setCities(result)
-      } catch(err) {
-        alert(err)
-      } finally {
-        setIsLoading(false);
-      }
-
-    }
-    fetchCities();
-  }, [])
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/app" element={<AppLayout />} >
-          <Route index element={<CityList cities={cities} isLoading={isLoading}/>}/>
-          <Route path="cities" element={<CityList cities={cities} isLoading={isLoading}/>}/>
-          <Route path="cities/:id" element={<CityDetail/>} />
-          <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading}/>}/>
-          <Route path="form" element={<Form/>}/>
-        </Route>
-        <Route path="/product" element={<WithNavbar><Product /></WithNavbar>} />
-        <Route path="/pricing" element={<WithNavbar><Pricing /></WithNavbar>} />
-        <Route path="/" element={<WithNavbar><HomePage /></WithNavbar>} />
-        <Route path="*" element={<PageNotFound />} />
-        <Route path="/login" element={<WithNavbar><Login /></WithNavbar>} />
-      </Routes>
-    </BrowserRouter>
+    <CitiesProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/app" element={<AppLayout />}>
+            <Route index element={<Navigate replace to="cities" />} />
+            <Route path="cities" element={<CityList />} />
+            <Route path="cities/:id" element={<CityDetail />} />
+            <Route path="countries" element={<CountryList />} />
+            <Route path="form" element={<Form />} />
+          </Route>
+          <Route
+            path="/product"
+            element={
+              <WithNavbar>
+                <Product />
+              </WithNavbar>
+            }
+          />
+          <Route
+            path="/pricing"
+            element={
+              <WithNavbar>
+                <Pricing />
+              </WithNavbar>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <WithNavbar>
+                <HomePage />
+              </WithNavbar>
+            }
+          />
+          <Route path="*" element={<PageNotFound />} />
+          <Route
+            path="/login"
+            element={
+              <WithNavbar>
+                <Login />
+              </WithNavbar>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </CitiesProvider>
   );
 }
 
-function WithNavbar({children}) {
+function WithNavbar({ children }) {
   return (
     <>
-      <Navbar/>
+      <Navbar />
       {children}
     </>
-  )
+  );
 }

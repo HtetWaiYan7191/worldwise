@@ -1,8 +1,10 @@
 import React from "react";
 import Country from "./Country";
 import Message from "./Message";
+import { useCities } from "../contexts/CitiesContext";
 
-export default function CountryList({ cities, isLoading }) {
+export default function CountryList() {
+  const {cities, isLoading} = useCities();
   if (isLoading) return <p>Loading...</p>;
 
   if (!cities?.length)
