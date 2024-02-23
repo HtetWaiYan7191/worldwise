@@ -131,6 +131,42 @@
         "lat": "17.31917640744285",
         "lng": "96.50390625000001"
       }
+    },
+    {
+      "id": "2c4b",
+      "cityName": "Pyay",
+      "country": "Myanmar",
+      "emoji": "MM",
+      "date": "2024-02-23T08:32:37.541Z",
+      "notes": "amazing trip ",
+      "position": {
+        "lat": "18.802318121688117",
+        "lng": "95.25146484375001"
+      }
+    },
+    {
+      "id": "7167",
+      "cityName": "Seikphyu",
+      "country": "Myanmar",
+      "emoji": "MM",
+      "date": "2024-02-23T08:33:49.619Z",
+      "notes": "nice food ",
+      "position": {
+        "lat": "20.992214250886114",
+        "lng": "94.43847656250001"
+      }
+    },
+    {
+      "id": "307c",
+      "cityName": "Kyonpyaw",
+      "country": "Myanmar",
+      "emoji": "MM",
+      "date": "2024-02-23T08:37:53.544Z",
+      "notes": "This is kyone pyor city ",
+      "position": {
+        "lat": "17.308687886770034",
+        "lng": "95.174560546875"
+      }
     }
   ]
 }

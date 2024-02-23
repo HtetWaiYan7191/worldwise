@@ -41,7 +41,6 @@ function CitiesProvider({ children }) {
 
  async function handleAddCity(newCity) {
    try {
-    setIsLoading(true)
     const res = await fetch(`${BASAEURL}/data/`, {
       method: "POST",
       body: JSON.stringify(newCity),
@@ -55,7 +54,6 @@ function CitiesProvider({ children }) {
    } catch(err) {
     alert(err);
    } finally {
-    setIsLoading(false);
    }
   }
 

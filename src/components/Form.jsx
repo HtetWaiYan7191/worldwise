@@ -54,7 +54,7 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-      };
+      };        
     default:
       throw new Error("Invalid Action Type");
   }
@@ -66,6 +66,7 @@ export default function Form() {
   const { isLoading, errorMessage, cityName, countryName, countryCode } = state;
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
+  const [addLoading, setAddLoading] = useState(false);
   const [notes, setNotes] = useState("");
   useEffect(() => {
     async function fetchData() {
@@ -101,9 +102,9 @@ export default function Form() {
       notes,
       position: {lat, lng}
     }
+    setAddLoading(true);
    await handleAddCity(newCity);
    navigate('/app/cities')
-   
   }
   if(!lat && !lng) return <Message message="Start By Clicking somewhere on the map 🥳"/>
 
@@ -146,7 +147,7 @@ export default function Form() {
 
         <div className="flex justify-between btn-container">
          <button type="submit" className="px-4 py-2 font-semibold text-black transition-all bg-green-500 rounded-lg decoration-none w-fit">
-            {isLoading ? 'Loading...' : 'Add'}
+            {addLoading ? 'Loading...' : 'Add'}
          </button>
           <BackButton />
         </div>
