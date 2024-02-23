@@ -13,15 +13,21 @@ export default function CountryList() {
       <Message message=" Add your first city by clicking on a city on the map " />
     );
 
-  const countries = cities.reduce((arr, city) => {
-    if (!arr.map((el) => el.city).includes(city.country))
-      return [...arr, { country: city.country, emoji: city.emoji }];
-    else return arr;
+    const countries = cities.reduce((arr, city) => {
+      // Check if the current city's country is not already present in the accumulator array
+      if (!arr.some((el) => el.country === city.country)) {
+          // If not present, add a new object representing the country to the accumulator array
+          return [...arr, { country: city.country, emoji: city.emoji }];
+      } else {
+          // If already present, do not modify the accumulator array
+          return arr;
+      }
   }, []);
+  console.log(countries);
   return (
     <ul className="grid grid-cols-2 gap-6 max-h-[500px] overflow-auto">
       {countries?.map((country) => (
-        <Country countryData={country} key={country.country} />
+        <Country countryData={country} key={country.id} />
       ))}
     </ul>
   );

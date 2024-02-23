@@ -3,7 +3,7 @@
     {
       "id": "ba3a",
       "cityName": "Viterbo",
-      "countryName": "Italy",
+      "country": "Italy",
       "emoji": "IT",
       "date": "2024-02-23T08:26:03.985Z",
       "notes": "hello ",
@@ -34,6 +34,18 @@
       "position": {
         "lat": "20.992214250886114",
         "lng": "94.43847656250001"
+      }
+    },
+    {
+      "id": "58c5",
+      "cityName": "Yangon",
+      "country": "Myanmar",
+      "emoji": "MM",
+      "date": "2024-02-23T09:03:54.421Z",
+      "notes": "good memories ",
+      "position": {
+        "lat": "16.81505795923194",
+        "lng": "96.14685058593751"
       }
     }
   ]
