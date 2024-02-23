@@ -1,21 +1,50 @@
-import React from 'react'
-import { useSearchParams, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { useCities } from "../contexts/CitiesContext";
 
 export default function Map() {
   const navigate = useNavigate();
+  const [mapPosition, setMapPosition] = useState([35.6586, 139.7454]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const lat = searchParams.get('lat')
-  const lng = searchParams.get('lng')
-  return (
-    <div className='flex-1 bg-gray-600 map-container'>
-        <h1>{lat} {lng}</h1>
-        <button className='p-4 m-5 bg-blue-600' onClick={() => navigate('form')}>
-          show form
-        </button>
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
+  const { cities } = useCities();
+  
+  useEffect(() => {
+    if(lat && lng) setMapPosition([lat, lng]);
+  }, [lat, lng])
 
-        <button className='p-4 m-5 bg-blue-600' onClick={() => setSearchParams({lat: 123, lng: 345})}>
-          change position
-        </button>
+  return (
+    <div className="flex-1 bg-gray-600 map-container">
+      <MapContainer
+        className="h-[100vh]"
+        center={mapPosition}
+        zoom={15}
+        scrollWheelZoom={true}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+        />
+        {cities?.map((city) => (
+          <Marker
+            position={[city.position.lat, city.position.lng]}
+            key={city.id}
+          >
+            <Popup>
+              {city.emoji} {city.cityName}
+            </Popup>
+          </Marker>
+        ))}
+        <ChangeMapCenter position={mapPosition} />
+      </MapContainer>
     </div>
-  )
+  );
+}
+
+function ChangeMapCenter({ position }) {
+  const map = useMap();
+  map.setView(position);
+  return null;
 }

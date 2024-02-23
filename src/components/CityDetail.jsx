@@ -18,14 +18,14 @@ export default function CityDetail() {
         </h3>
       </div>
 
-      <div className="text-[14px] font-semibold ">
+      <div className="text-[13px] font-semibold ">
         <h2>YOU WENT TO BERLIN ON</h2>
-        <h3 className="text-[18px]">{date}</h3>
+        <h3 className="text-[20px]">{date}</h3>
       </div>
 
       <div className="">
-        <h2 className="text-[14px] font-semibold ">YOUR NOTES</h2>
-        <h3 className="text-[18px]">{notes}</h3>
+        <h2 className="text-[13px] font-semibold ">YOUR NOTES</h2>
+        <h3 className="text-[20px]">{notes}</h3>
         </div>
 
       <div className="">
