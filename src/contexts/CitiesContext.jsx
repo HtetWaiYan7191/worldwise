@@ -39,8 +39,34 @@ function CitiesProvider({ children }) {
     }
   }
 
+ async function handleAddCity(newCity) {
+   try {
+    setIsLoading(true)
+    const res = await fetch(`${BASAEURL}/data/`, {
+      method: "POST",
+      body: JSON.stringify(newCity),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    },
+    );
+    const data =await res.json();
+    setCities(prev => [...prev, data])
+   } catch(err) {
+    alert(err);
+   } finally {
+    setIsLoading(false);
+   }
+  }
+
+  function removeCity(id) {
+    console.log('remove city is working ... ')
+    const newCities = cities.filter((city) => (city.id !== id));
+    setCities(newCities);
+  }
+
   return (
-    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>
+    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, handleAddCity, removeCity }}>
       {children}
     </CitiesContext.Provider>
   );

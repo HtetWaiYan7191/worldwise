@@ -5,6 +5,7 @@ import { useCities } from "../contexts/CitiesContext";
 
 export default function CountryList() {
   const {cities, isLoading} = useCities();
+  console.log(cities);
   if (isLoading) return <p>Loading...</p>;
 
   if (!cities?.length)
@@ -18,7 +19,7 @@ export default function CountryList() {
     else return arr;
   }, []);
   return (
-    <ul className="grid grid-cols-2 gap-6">
+    <ul className="grid grid-cols-2 gap-6 max-h-[500px] overflow-auto">
       {countries?.map((country) => (
         <Country countryData={country} key={country.country} />
       ))}

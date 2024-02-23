@@ -1,8 +1,13 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Button from "./Button";
 import BackButton from "./BackButton";
 import useSearchUrl from "../hooks/useSearchUrl";
 import Message from "../components/Message";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useCities } from "../contexts/CitiesContext";
+import { data } from "autoprefixer";
+import {useNavigate} from 'react-router-dom'
 
 function countryCodeToEmoji(countryCode) {
   const codePoints = countryCode
@@ -31,7 +36,6 @@ function reducer(state, action) {
         isLoading: true,
       };
     case "fetchSuccess":
-      console.log(action.payload);
       return {
         ...state,
         isLoading: true,
@@ -57,10 +61,12 @@ function reducer(state, action) {
 }
 export default function Form() {
   const { lat, lng } = useSearchUrl();
+  const {handleAddCity} = useCities();
   const [state, dispatch] = useReducer(reducer, initialState);
   const { isLoading, errorMessage, cityName, countryName, countryCode } = state;
-  console.log(countryName);
-  console.log(errorMessage);
+  const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate();
+  const [notes, setNotes] = useState("");
   useEffect(() => {
     async function fetchData() {
       try {
@@ -83,12 +89,30 @@ export default function Form() {
     fetchData();
   }, [lat, lng]);
 
+  async function createCity(e) {
+    e.preventDefault();
+    if(!cityName || !startDate || !notes) return
+
+    const newCity = {
+      cityName,
+      country:countryName,
+      emoji:countryCode,
+      date:startDate,
+      notes,
+      position: {lat, lng}
+    }
+   await handleAddCity(newCity);
+   navigate('/app/cities')
+   
+  }
+  if(!lat && !lng) return <Message message="Start By Clicking somewhere on the map 🥳"/>
+
   if (isLoading) return <p>Loading...</p>;
 
   if (errorMessage) return <Message message={errorMessage} />;
   return (
     <div className="form-container w-[80%]">
-      <form action="" className="p-8 bg-gray-700 rounded-md ">
+      <form action="" onSubmit={createCity} className="p-8 bg-gray-700 rounded-md ">
         <div className="flex flex-col mb-4 gap-y-2">
           <label htmlFor="cityname">City Name</label>
           <div className="flex justify-between px-3 py-2 bg-gray-300 rounded-md outline-none py-2text-black">
@@ -104,11 +128,7 @@ export default function Form() {
 
         <div className="flex flex-col mb-6 gap-y-2">
           <label htmlFor="time">when did you go to ?</label>
-          <input
-            type="text"
-            className="p-2 text-black text-white bg-gray-300 rounded-md outline-none active:outline-2"
-            placeholder=""
-          />
+          <DatePicker dateFormat="dd/MM/yyyy" className="w-full px-3 py-2 text-black rounded-md" selected={startDate} onChange={(date) => setStartDate(date) }/>
         </div>
 
         <div className="flex flex-col mb-6 gap-y-2">
@@ -119,11 +139,15 @@ export default function Form() {
             cols="10"
             rows="5"
             className="p-3 text-black bg-gray-300"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
           ></textarea>
         </div>
 
         <div className="flex justify-between btn-container">
-          <Button>ADD</Button>
+         <button type="submit" className="px-4 py-2 font-semibold text-black transition-all bg-green-500 rounded-lg decoration-none w-fit">
+            {isLoading ? 'Loading...' : 'Add'}
+         </button>
           <BackButton />
         </div>
       </form>

@@ -9,6 +9,7 @@ export const formatDate = (date) => {
   }).format(new Date(date));
 };
 export default function City({ city }) {
+  const {removeCity} = useCities();
   const { emoji, date, cityName, id, position } = city;
   const { currentCity } = useCities();
   const isActive = currentCity.id === id;
@@ -28,7 +29,7 @@ export default function City({ city }) {
 
         <div className="flex items-center text-sm font-medium gap-x-4">
           <span>{formatDate(date)}</span>
-          <button className="w-6 h-6 text-white rounded-full bg-slate-800/90">
+          <button onClick={(e) => {removeCity(city.id); e.preventDefault(); }} className="w-6 h-6 text-white rounded-full bg-slate-800/90">
             x
           </button>
         </div>
