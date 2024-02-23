@@ -11,20 +11,20 @@ import {
 import { useCities } from "../contexts/CitiesContext";
 import { useGeoLocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
+import useSearchUrl from "../hooks/useSearchUrl";
+
+
 
 export default function Map() {
   const navigate = useNavigate();
   const [mapPosition, setMapPosition] = useState([35.6586, 139.7454]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
+  const {lat, lng} = useSearchUrl();
   const { cities } = useCities();
   const {
     isLoading: isLoadingGeo,
     position: positionGeo,
     getPosition,
   } = useGeoLocation();
-  console.log(positionGeo);
 
   useEffect(() => {
     if (lat && lng) setMapPosition([lat, lng]);
@@ -43,7 +43,7 @@ export default function Map() {
         scrollWheelZoom={true}
       >
         {
-          !positionGeo && <div className="absolute p-8 bottom-10 z-[10000] flex justify-center w-full">
+          positionGeo && <div className="absolute p-8 bottom-10 z-[10000] flex justify-center w-full">
           <Button onClick={() => getPosition()}>{isLoadingGeo ? 'Loading' : 'Use Current Location'}</Button>
         </div>
         }
