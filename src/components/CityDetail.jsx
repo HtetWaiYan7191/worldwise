@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCities } from "../contexts/CitiesContext";
+import BackButton from "./BackButton";
 export default function CityDetail() {
   const { getCity, isLoading, currentCity } = useCities();
   const { id } = useParams();
@@ -32,6 +33,8 @@ export default function CityDetail() {
         <h2 className="text-[14px] font-semibold "> LEARN MORE</h2>{" "}
         <a href="" className="text-yellow-500">{`Check out ${cityName} on Wikipedia`}</a>
       </div>
+
+      <BackButton/>
     </div>
   );
 }
