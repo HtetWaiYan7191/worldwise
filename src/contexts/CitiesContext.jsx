@@ -15,7 +15,6 @@ function CitiesProvider({ children }) {
         setIsLoading(true);
         const response = await fetch(`${BASAEURL}/data`);
         const result = await response.json();
-        console.log(result);
         setCities(result);
       } catch (err) {
         alert(err);
@@ -53,14 +52,20 @@ function CitiesProvider({ children }) {
     setCities(prev => [...prev, data])
    } catch(err) {
     alert(err);
-   } finally {
-   }
+   } 
   }
 
-  function removeCity(id) {
-    console.log('remove city is working ... ')
-    const newCities = cities.filter((city) => (city.id !== id));
-    setCities(newCities);
+  async function removeCity(id) {
+    try {
+      const res = await fetch(`${BASAEURL}/data/${id}`, {
+        method: "DELETE"
+      })
+      const data =await res.json();
+      setCities(cities => cities.filter(city => city.id !== id))
+     } catch(err) {
+      alert("There was an error deleting city.");
+     } finally {
+     }
   }
 
   return (
