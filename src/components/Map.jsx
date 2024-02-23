@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import { useCities } from "../contexts/CitiesContext";
+import { useGeoLocation } from "../hooks/useGeoLocation";
+import Button from "./Button";
 
 export default function Map() {
   const navigate = useNavigate();
@@ -10,19 +19,35 @@ export default function Map() {
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
   const { cities } = useCities();
-  
+  const {
+    isLoading: isLoadingGeo,
+    position: positionGeo,
+    getPosition,
+  } = useGeoLocation();
+  console.log(positionGeo);
+
   useEffect(() => {
-    if(lat && lng) setMapPosition([lat, lng]);
-  }, [lat, lng])
+    if (lat && lng) setMapPosition([lat, lng]);
+  }, [lat, lng]);
+
+  useEffect(() => {
+    if(positionGeo) setMapPosition([positionGeo.lat, positionGeo.lng])
+  }, [positionGeo])
 
   return (
-    <div className="flex-1 bg-gray-600 map-container">
+    <div className="relative flex-1 bg-gray-600 map-container">
       <MapContainer
         className="h-[100vh]"
         center={mapPosition}
         zoom={8}
         scrollWheelZoom={true}
       >
+        {
+          !positionGeo && <div className="absolute p-8 bottom-10 z-[10000] flex justify-center w-full">
+          <Button onClick={() => getPosition()}>{isLoadingGeo ? 'Loading' : 'Use Current Location'}</Button>
+        </div>
+        }
+
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
@@ -38,7 +63,7 @@ export default function Map() {
           </Marker>
         ))}
         <ChangeMapCenter position={mapPosition} />
-        <DetectClick/>
+        <DetectClick />
       </MapContainer>
     </div>
   );
@@ -50,12 +75,12 @@ function ChangeMapCenter({ position }) {
   return null;
 }
 
-function DetectClick(){
-  const navigate = useNavigate()
+function DetectClick() {
+  const navigate = useNavigate();
   useMapEvents({
     click: (e) => {
-      console.log(e)
+      console.log(e);
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
-    }
-  })
+    },
+  });
 }
