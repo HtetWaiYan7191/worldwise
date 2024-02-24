@@ -29,7 +29,7 @@ export default function City({ city }) {
 
         <div className="flex items-center text-sm font-medium gap-x-4">
           <span>{formatDate(date)}</span>
-          <button onClick={(e) => {removeCity(city.id); e.preventDefault(); }} className="w-6 h-6 text-white rounded-full bg-slate-800/90">
+          <button onClick={(e) => {removeCity(city.id); e.preventDefault(); }} className="w-6 h-6 text-white rounded-full hover:bg-yellow-700 bg-slate-800/90">
             {isLoading ? '...' : 'x'}
           </button>
         </div>

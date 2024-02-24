@@ -47,6 +47,30 @@
         "lat": "16.81505795923194",
         "lng": "96.14685058593751"
       }
+    },
+    {
+      "id": "0882",
+      "cityName": "Mawlamyine",
+      "country": "Myanmar",
+      "emoji": "MM",
+      "date": "2024-02-24T05:45:35.284Z",
+      "notes": "good memories. got a lot experiences about mawlamyine thin gyan festival.",
+      "position": {
+        "lat": "16.457781732166715",
+        "lng": "97.63000488281251"
+      }
+    },
+    {
+      "id": "b642",
+      "cityName": "Bangkok",
+      "country": "Thailand",
+      "emoji": "TH",
+      "date": "2024-02-24T06:10:12.229Z",
+      "notes": "good food, great people ",
+      "position": {
+        "lat": "13.774066408054827",
+        "lng": "100.59082031250001"
+      }
     }
   ]
 }

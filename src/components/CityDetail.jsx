@@ -5,7 +5,7 @@ import BackButton from "./BackButton";
 export default function CityDetail() {
   const { getCity, isLoading, currentCity } = useCities();
   const { id } = useParams();
-  const { cityName, country, emoji, date, notes, position } = currentCity;
+  const { cityName, country, emoji, date, notes } = currentCity;
   useEffect(() => {
     getCity(id);
   }, [id]);
@@ -31,8 +31,8 @@ export default function CityDetail() {
 
       <div className="">
         <h2 className="text-[14px] font-semibold "> LEARN MORE</h2>{" "}
-        <a href="" className="text-yellow-500">{`Check out ${cityName} on Wikipedia`}</a>
-      </div>
+        <a href={`https://en.wikipedia.org/wiki/${cityName}`} target="blank" className="text-yellow-500">{`Check out ${cityName} on Wikipedia`}</a>
+      </div> 
 
       <BackButton/>
     </div>
