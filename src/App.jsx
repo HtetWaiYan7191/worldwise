@@ -13,8 +13,11 @@ import CountryList from "./components/CountryList";
 import Form from "./components/Form";
 import { Navigate } from "react-router-dom";
 import { CitiesProvider } from "./contexts/CitiesContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import Signup from "./components/Signup";
 export default function App() {
   return (
+    <AuthProvider>
     <CitiesProvider>
       <BrowserRouter>
         <Routes>
@@ -58,9 +61,18 @@ export default function App() {
               </WithNavbar>
             }
           />
+          <Route
+            path="/signup"
+            element={
+              <WithNavbar>
+                <Signup />
+              </WithNavbar>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </CitiesProvider>
+    </AuthProvider>
   );
 }
 
