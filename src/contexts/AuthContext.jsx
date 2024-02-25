@@ -34,6 +34,12 @@ function reducer(state, action) {
         errorMessage: action.payload,
         isLogIn: false,
       };
+      case "logout":
+        return{
+            ...initialState,
+            signupUsers: state.signupUsers,
+            errorMessage: ""
+        }
     default:
       throw new Error("cannot find the type in reducer :(");
   }
@@ -41,6 +47,7 @@ function reducer(state, action) {
 function AuthProvider({ children }) {
   const [{ isLogIn, currentUser, signupUsers, errorMessage }, dispatch] =
     useReducer(reducer, initialState);
+
   function login(email, password) {
     if (signupUsers.length < 0) {
       dispatch({
@@ -79,9 +86,14 @@ if (index === -1) {
       return true;
     }
   }
+
+  function logout() {
+    dispatch({type: 'logout'})
+    return true;
+  }
   return (
     <AuthContext.Provider
-      value={{ isLogIn, currentUser, signupUsers, errorMessage, login, signup }}
+      value={{ isLogIn, currentUser, signupUsers, errorMessage, login, signup, logout }}
     >
       {children}
     </AuthContext.Provider>

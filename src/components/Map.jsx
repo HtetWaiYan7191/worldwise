@@ -12,6 +12,7 @@ import { useCities } from "../contexts/CitiesContext";
 import { useGeoLocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
 import useSearchUrl from "../hooks/useSearchUrl";
+import LogOut from "./LogOut";
 
 
 
@@ -46,7 +47,7 @@ export default function Map() {
           <Button onClick={() => getPosition()}>{isLoadingGeo ? 'Loading' : 'Use Current Location'}</Button>
         </div>
         }
-
+        <LogOut/>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
