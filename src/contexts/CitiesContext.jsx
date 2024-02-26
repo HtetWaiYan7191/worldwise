@@ -4,6 +4,7 @@ import React, {
   useState,
   useEffect,
   useReducer,
+  useCallback,
 } from "react";
 
 const CitiesContext = createContext();
@@ -77,7 +78,9 @@ function CitiesProvider({ children }) {
     fetchCities();
   }, []);
 
+ const getCity = useCallback(
   async function getCity(id) {
+    if(Number(id) === currentCity.id) return;
     dispatch({ type: "fetchLoading" });
     try {
       const result = await fetch(`${BASAEURL}/data/${id}`);
@@ -89,7 +92,7 @@ function CitiesProvider({ children }) {
     } finally {
       dispatch({ type: "loaded" });
     }
-  }
+  }, [currentCity.id]);
 
   async function handleAddCity(newCity) {
     try {
