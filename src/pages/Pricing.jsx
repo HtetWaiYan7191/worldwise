@@ -9,7 +9,7 @@ export default function Pricing() {
             <div className="flex flex-col about-product-container gap-y-6">
                 <h2 className='text-3xl font-semibold'>Simple pricing just $9/month.</h2>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci quis, temporibus necessitatibus exercitationem totam at. Deleniti quaerat, esse, illum ab quis, alias debitis reiciendis beatae illo quam enim nulla nisi!</p>
-                <Button link="/app">
+                <Button link="/login">
                   START TRACKING NOW
                 </Button>
             </div>
