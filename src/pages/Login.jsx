@@ -30,7 +30,7 @@ export default function Login() {
         <form action="" onSubmit={handleSubmit} className=" bg-gray-700 w-[45%] rounded-md py-12 px-8">
           <div className="flex flex-col mb-4 gap-y-2">
             <label htmlFor="email">Email address</label>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-2 text-black bg-gray-300 rounded-md outline-none active:outline-2" placeholder="Email Address" />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-2 text-black bg-gray-300 rounded-md outline-none active:outline-2" placeholder="Email Address" />
           </div>
 
           <div className="flex flex-col mb-6 gap-y-2">

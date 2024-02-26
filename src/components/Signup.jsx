@@ -30,7 +30,7 @@ export default function Signup() {
           <div className="flex flex-col mb-4 gap-y-2">
             <label htmlFor="email">Email address</label>
             <input
-              type="text" required
+              type="email" required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="p-2 text-black bg-gray-300 rounded-md outline-none active:outline-2"
