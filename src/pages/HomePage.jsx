@@ -17,7 +17,7 @@ export default function HomePage() {
         </p>
 
         <div className="flex justify-center btn-container">
-          <Button link="app">
+          <Button link="login">
             Start Tracking Now
           </Button>
         </div>

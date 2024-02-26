@@ -1,32 +1,29 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Button from "../components/Button";
 import { useAuth } from "../contexts/AuthContext";
 import {useNavigate} from 'react-router-dom';
 
 export default function Login() {
-  const { login, errorMessage, signupUsers} = useAuth();
+  const { login, isLogin, errorMessage, signupUsers} = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  console.log(signupUsers);
   
   async function handleSubmit(e) {
     e.preventDefault();
-   const res = await login(email, password)
-   console.log(res);
+    const res = await login(email, password)
+    if(res) navigate('/app')
     setEmail('')
     setPassword('')
-    if(res) {
-      navigate('/app')
-    }
-    setEmail('')
-    setPassword('')
+
   }
 
   function handleSignUpBtn(e) {
     e.preventDefault();
     navigate('/signup')
   }
+
+  
   return (
     <section className="pt-32 login-container">
       <div className="flex items-center justify-center login-form">
