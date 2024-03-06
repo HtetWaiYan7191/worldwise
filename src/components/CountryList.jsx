@@ -22,7 +22,6 @@ export default function CountryList() {
           return arr;
       }
   }, []);
-  console.log(countries);
   return (
     <ul className="grid grid-cols-2 gap-6 max-h-[500px] overflow-auto">
       {countries?.map((country) => (

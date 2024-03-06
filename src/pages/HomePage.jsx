@@ -1,8 +1,11 @@
 import React from "react";
 import style from "./HomePage.module.css";
 import Button from "../components/Button";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function HomePage() {
+  const {isLogIn} = useAuth();
+
   return (
     <main className={style.main}>
       <section className="h-[100%] w-[75%] mx-auto gap-y-8 flex justify-center flex-col">
@@ -17,7 +20,7 @@ export default function HomePage() {
         </p>
 
         <div className="flex justify-center btn-container">
-          <Button link="login">
+          <Button link={`${isLogIn ? 'app' : 'login'}`}>
             Start Tracking Now
           </Button>
         </div>
