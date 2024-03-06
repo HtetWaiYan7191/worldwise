@@ -5,7 +5,6 @@ import { useCities } from "../contexts/CitiesContext";
 
 export default function CountryList() {
   const {cities, isLoading} = useCities();
-  console.log(cities);
   if (isLoading) return <p>Loading...</p>;
 
   if (!cities?.length)

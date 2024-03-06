@@ -1,18 +1,6 @@
 {
   "data": [
     {
-      "id": "ba3a",
-      "cityName": "Viterbo",
-      "country": "Italy",
-      "emoji": "IT",
-      "date": "2024-02-23T08:26:03.985Z",
-      "notes": "hello ",
-      "position": {
-        "lat": "42.42345651793833",
-        "lng": "12.117919921875002"
-      }
-    },
-    {
       "id": "d70f",
       "cityName": "Bago",
       "country": "Myanmar",
@@ -70,6 +58,30 @@
       "position": {
         "lat": "13.774066408054827",
         "lng": "100.59082031250001"
+      }
+    },
+    {
+      "id": "2a02",
+      "cityName": "Hlegu",
+      "country": "Myanmar",
+      "emoji": "MM",
+      "date": "2024-03-06T04:09:05.330Z",
+      "notes": "this is hlegu",
+      "position": {
+        "lat": "17.164410185652127",
+        "lng": "96.26727774739267"
+      }
+    },
+    {
+      "id": "5546",
+      "cityName": "Katkamdag",
+      "country": "India",
+      "emoji": "IN",
+      "date": "2024-03-06T04:11:16.587Z",
+      "notes": "testing",
+      "position": {
+        "lat": "23.98934090820718",
+        "lng": "85.26996329426765"
       }
     }
   ]
